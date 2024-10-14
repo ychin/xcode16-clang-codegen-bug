@@ -156,14 +156,14 @@ utf_find_illegal(char_u *p_orig)
 int main() {
     // Find illegal char with a truncated UTF-8 string. \xE2 implies the sequence
     // should be supposed to be 3-bytes long, but in this string it's only
-    // 2-bytes long.  It's supposed to return "3" which is the index of the
+    // 2-bytes long.  It's supposed to return "6" which is the index of the
     // first illegal sequence starting at \xE2.
-    int output = utf_find_illegal((char_u*)"abc\xE2\x82xyz");
+    int output = utf_find_illegal((char_u*)"abcdef\xE2\x82xyz");
 
     //printf("Compiled with clang " __clang_version__ "\n");
-    printf("Output: %d. Expected: 3\n", output);
+    printf("Output: %d. Expected: 6\n", output);
 
-    if (output != 3)
+    if (output != 6)
     {
         // Incorrect result. Return error code.
         return 1;
