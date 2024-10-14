@@ -20,4 +20,6 @@ if (*p >= 0x80u && (len == 1
             || utf_char2len(utf_ptr2char(p)) != len))
 ```
 
-Both `utf_ptr2len` and `utf_ptr2char` contains somewhat similar code. The inliner seems to inline both functions and then combine the logic as it's looping through the bytes but it doesn't seem to have the correct logic for breaking out of the loop as a result (in this case, `utf_ptr2len` is supposed to return 1 in line 126, which would have resulted in `len` being 1 and causing the if statement to be true, and therefore returning from `utf_find_illegal`).
+Both `utf_ptr2len` and `utf_ptr2char` contains somewhat similar code. The inliner seems to inline both functions and then combine the logic as it's looping through the bytes but it doesn't seem to have the correct logic for breaking out of the loop as a result (in this case, `utf_ptr2len` is supposed to return 1 in line 126, which would have resulted in `len` being 1 and causing the if statement to be true, and therefore returning from `utf_find_illegal`). If the `utf_char2len(utf_ptr2char(p)) != len` condition is commented out in the snippet, then the code would work properly.
+
+Also, turning on UBSAN using `-fsanitize=undefined` (which is commented out in the Makefile) would for some reason fix the issue.
