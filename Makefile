@@ -1,7 +1,6 @@
 
 CC=clang
 CFLAGS=-g3 -Wall
-CFLAGS+= -Wl,-no_deduplicate
 LDFLAGS=
 
 # Use below to turn on sanitizers
