@@ -4,7 +4,28 @@ See:
 
 This is a quick test to demonstrate Xcode 16's clang compiler codegen bug. When using `-O2`/`-O3`, this version of clang seems to generate wrong optimized inline code, as demonstrated in this sample.
 
+# Running
+
 Simply run `make test` to run the test. It will return cleanly if the compiler works properly.
+
+Correct results should look like the following:
+
+```
+./program_dbg
+Output: 6. Expected: 6
+./program_opt
+Output: 6. Expected: 6
+```
+
+Incorrect results (when using Xcode 16) looks like this:
+
+```
+./program_dbg
+Output: 6. Expected: 6
+./program_opt
+Output: 7. Expected: 6
+make: *** [test] Error 1
+```
 
 # Analysis
 
