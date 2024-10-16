@@ -160,7 +160,7 @@ int main() {
     // first illegal sequence starting at \xE2.
     int output = utf_find_illegal((char_u*)"abcdef\xE2\x82xyz");
 
-    //printf("Compiled with clang " __clang_version__ "\n");
+    printf("Compiled with clang " __clang_version__ "\n");
     printf("Output: %d. Expected: 6\n", output);
 
     if (output != 6)
