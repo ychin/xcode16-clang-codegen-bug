@@ -4,6 +4,8 @@ See:
 
 This is a quick test to demonstrate Xcode 16's clang compiler codegen bug. When using `-O2`/`-O3`, this version of clang seems to generate wrong optimized inline code, as demonstrated in this sample.
 
+The bug is also tested in [CI](https://github.com/ychin/xcode16-clang-codegen-bug/actions/workflows/ci.yaml). A failing run means the bug occurs.
+
 # Running
 
 Simply run `make test` to run the test. It will return cleanly if the compiler works properly.
