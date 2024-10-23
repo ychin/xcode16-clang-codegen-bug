@@ -1,6 +1,9 @@
 See:
 - https://github.com/vim/vim/pull/15764#issuecomment-2406661051
+- https://github.com/Homebrew/homebrew-core/issues/195325
 - https://developer.apple.com/forums/thread/766030
+
+<ins>Update (2024-10-23)</ins>: It was [identified](https://github.com/Homebrew/homebrew-core/issues/195325#issuecomment-2433476723) that using the compilation flags `-mllvm -enable-constraint-elimination=0` would fix this issue, indicating that the bug is in the "ConstraintEliminationPass" step.
 
 This is a quick test to demonstrate Xcode 16's clang compiler codegen bug. When using `-O2`/`-O3`, this version of clang seems to generate wrong optimized inline code, as demonstrated in this sample.
 
