@@ -10,8 +10,18 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # This uses Xcode 15
           - os: macos-14
+          # This uses Xcode 16
           - os: macos-15
+
+          # Use open source clang
+          - os: macos-15
+            clang: llvm@17
+          - os: macos-15
+            clang: llvm@18
+          - os: macos-15
+            clang: llvm@19
 
     runs-on: ${{ matrix.os }}
 
@@ -20,4 +30,17 @@ jobs:
 
       - name: Test Compiler Bug
         run: |
-          make test
+          export CLANG="clang"
+          export CC=""
+          if [[ "${{ matrix.clang }}" != "" ]]; then
+            echo '::group::Install LLVM'
+            brew install --quiet ${{ matrix.clang }}
+            export CLANG="/opt/homebrew/opt/${{ matrix.clang }}/bin/clang"
+            export CC="CC=$CLANG"
+            echo '::endgroup::'
+          fi
+          echo '::group::Clang version'
+          $CLANG --version
+          echo '::endgroup::'
+
+          make test $CC
