@@ -6,6 +6,9 @@ This is a quick test to demonstrate Xcode 16's clang compiler codegen bug. When 
 
 The bug is also tested in [CI](https://github.com/ychin/xcode16-clang-codegen-bug/actions/workflows/ci.yaml). A failing run means the bug occurs.
 
+[![Test Status](https://github.com/ychin/xcode16-clang-codegen-bug/actions/workflows/ci.yaml/badge.svg)](https://github.com/ychin/xcode16-clang-codegen-bug/actions/workflows/ci.yaml)
+
+
 # Running
 
 Simply run `make test` to run the test. It will return cleanly if the compiler works properly.
