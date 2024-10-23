@@ -1,6 +1,7 @@
 
 CC=clang
-CFLAGS=-g3 -Wall
+CFLAGS_BASE=-g -Wall -Werror
+CFLAGS=
 LDFLAGS=
 
 # Use below to turn on sanitizers
@@ -15,10 +16,10 @@ LDFLAGS=
 all: program_opt program_dbg
 
 program_opt: test.c Makefile
-	$(CC) -o program_opt $(CFLAGS) -O2 test.c
+	$(CC) -o program_opt $(CFLAGS_BASE) $(CFLAGS) -O2 test.c
 
 program_dbg: test.c Makefile
-	$(CC) -o program_dbg $(CFLAGS) -O1 test.c
+	$(CC) -o program_dbg $(CFLAGS_BASE) $(CFLAGS) -O1 test.c
 
 .PHONY :clean test
 clean:

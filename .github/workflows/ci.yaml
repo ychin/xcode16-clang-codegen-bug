@@ -15,6 +15,10 @@ jobs:
           # This uses Xcode 16
           - os: macos-15
 
+          # This uses Xcode 16, with constraint elimination off
+          - os: macos-15
+            cflags: "-mllvm -enable-constraint-elimination=0"
+
           # Use open source clang
           - os: macos-15
             clang: llvm@17
@@ -32,6 +36,8 @@ jobs:
         run: |
           export CLANG="clang"
           export CC=""
+          export CFLAGS=""
+
           if [[ "${{ matrix.clang }}" != "" ]]; then
             echo '::group::Install LLVM'
             brew install --quiet ${{ matrix.clang }}
@@ -43,4 +49,4 @@ jobs:
           $CLANG --version
           echo '::endgroup::'
 
-          make test $CC
+          make test $CC CFLAGS="${{ matrix.cflags }}"
