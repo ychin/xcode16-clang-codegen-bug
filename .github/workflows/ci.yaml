@@ -12,11 +12,14 @@ jobs:
         include:
           # This uses Xcode 15
           - os: macos-14
-          # This uses Xcode 16
+          # This uses Xcode 16 (broken)
           - os: macos-15
-          # This uses Xcode 16.1
+          # This uses Xcode 16.1 (broken)
           - os: macos-15
             xcode: 16.1
+          # This uses Xcode 16.2 (fixed)
+          - os: macos-15
+            xcode: 16.2
 
           # This uses Xcode 16, with constraint elimination off
           - os: macos-15
