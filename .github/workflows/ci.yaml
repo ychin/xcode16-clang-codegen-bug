@@ -12,18 +12,22 @@ jobs:
         include:
           # This uses Xcode 15
           - os: macos-14
-          # This uses Xcode 16 (broken)
-          - os: macos-15
-          # This uses Xcode 16.1 (broken)
-          - os: macos-15
-            xcode: 16.1
+
+# Leave out the old broken versions since Xcode 16.2 has fixed the issue.
+#          # This uses Xcode 16.0 (broken)
+#          - os: macos-15
+#            xcode: 16.0
+#          # This uses Xcode 16.1 (broken)
+#          - os: macos-15
+#            xcode: 16.1
+#          # This uses Xcode 16.0, with constraint elimination off, which should pass.
+#          - os: macos-15
+#            xcode: 16.0
+#            cflags: "-mllvm -enable-constraint-elimination=0"
+
           # This uses Xcode 16.2 (fixed)
           - os: macos-15
             xcode: 16.2
-
-          # This uses Xcode 16, with constraint elimination off
-          - os: macos-15
-            cflags: "-mllvm -enable-constraint-elimination=0"
 
           # Use open source clang
           - os: macos-15
